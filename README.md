@@ -15,3 +15,5 @@ some text
 you can use multiline too
 =
 ```
+
+With '-' meaning the start of a text, the string directly behind the '-' will be the name of the text, which will be a key in `texts` dictionary in the code.
