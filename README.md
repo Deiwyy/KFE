@@ -9,7 +9,7 @@ You can also kinda customize the program, just change what I call 'texts' in the
 
 The syntax for these texts goes like this 
 
--[name of the key] <br>
+```-[name of the key] <br>
 some text <br>
 you can use multiline too
-<br>=
+<br>=```
