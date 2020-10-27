@@ -26,7 +26,6 @@ class FileExplorer:
 		}
 
 
-
 	def getTextsFromFile(self):
 		requiredTexts = ['inputText', 'noPermission', 'doesNotExist', 'error', 'fileHidden', 'pathNotSpecified']
 		textsDirectory = './texts/'
@@ -62,6 +61,7 @@ class FileExplorer:
 		sleep(self.errorSleepTime)
 		return
 		
+
 	def main(self):
 		try:
 			self.files = os.listdir(self.currentPath)
@@ -120,7 +120,6 @@ class FileExplorer:
 		splitPath.pop(0)
 		for a in splitPath:
 			self.currentPath = os.path.join(self.currentPath, a)
-
 
 
 	def delete(self, command):		
