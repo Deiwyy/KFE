@@ -1,0 +1,22 @@
+
+-inputText
+# :back to revert to previous folder       #
+# :delete [file] to delete a file          #
+# :newfile [filename] to create a new file #
+# :movefile [from] [to] to move a file     #
+# :copyfile [file] [location to copy to]   #
+ >
+=
+
+-noPermission
+Seems like you don't have the permission to perform this operation to this file/directory
+=
+
+-doesNotExist
+Seems like the file/dir you are trying to perform an action to doesn't exist
+=
+
+-error
+Something went wrong
+=
+
