@@ -6,13 +6,30 @@ from time import sleep
 
 class FileExplorer:
 	def __init__(self):
-		self.errorSleepTime = 1.5
-		self.STARTPATH = os.environ['USERPROFILE']
+		self.errorSleepTime = 5
+		self.STARTPATH = os.path.expanduser('~')
 		self.currentPath = self.STARTPATH
 		self.files = []
-		# TEXTS
+
+		self.texts = {
+		'missingTxts': 'There are some missing texts in the txts.txt file, you can continue using this program, but expect bugs if you do'
+		} # missingTxts by default here
+		self.getTextsFromFile()
+
+		# COMMANDS
+		self.COMMANDS = {
+			':back': self.goBack,
+			':delete': self.delete, ':newfile': self.newFile,
+			':movefile': self.moveFile,
+			':copyfile': self.copyFile,
+
+		}
+
+
+
+	def getTextsFromFile(self):
+		requiredTexts = ['inputText', 'noPermission', 'doesNotExist', 'error', 'fileHidden', 'pathNotSpecified']
 		textsDirectory = './texts/'
-		self.texts = {}
 		currentTxt = ''
 		currentTxtName = ''
 		readingAText = False
@@ -24,23 +41,23 @@ class FileExplorer:
 					readingAText = True
 				elif line.rstrip() == '=':
 					self.texts[currentTxtName] = currentTxt[:-1]
-					readingAText = False				
+					readingAText = False
+					currentTxt = ''				
 				elif readingAText:
 					currentTxt += line
 
-		print(self.texts['inputText'])
-		print(self.texts)
+		missingReqTxts = False
+		for reqtxt in requiredTexts:
+			if not reqtxt in self.texts:
+				self.texts[reqtxt] = '-Missing text-'
+				missingReqTxts = True
 
-		# COMMANDS
-		self.COMMANDS = {
-			':back': self.goBack,
-			':delete': self.delete, ':newfile': self.newFile,
-			':movefile': self.moveFile,
-			':copyfile': self.copyFile,
+		if missingReqTxts:
+			self.error(self.texts['missingTxt'])
 
-		}
 
 	def error(self, msg):
+		os.system('cls')
 		print(msg)
 		sleep(self.errorSleepTime)
 		return
@@ -103,11 +120,10 @@ class FileExplorer:
 		splitPath.pop(0)
 		for a in splitPath:
 			self.currentPath = os.path.join(self.currentPath, a)
-		
 
 
-	def delete(self, command):
-		os.system('cls')
+
+	def delete(self, command):		
 		try:
 			if os.path.exists(os.path.join(self.currentPath, command[1])):
 				if input(f'Are you sure you want to permanently delete {command[1]} (Y - N)   >').lower() == 'y':
@@ -152,17 +168,17 @@ class FileExplorer:
 
 	
 	def moveFile(self, command):
-		os.system('cls')
 		try:
 			shutil.move(os.path.join(self.currentPath, command[1]), os.path.join(self.currentPath, command[2]))
 		except FileNotFoundError:
 			self.error(self.texts['doesNotExist']) 
 		except shutil.Error:
-			self.error(self.texts['error']) 
+			self.error(self.texts['error'])
+		except IndexError:
+			self.error(self.texts['pathNotSpecified'])
 
 
 	def copyFile(self, command):
-		os.system('cls')
 		if len(command) >= 2:
 			if os.path.exists(os.path.join(self.currentPath, command[1])) and command[2] != '':			
 				if os.path.exists(os.path.join(self.currentPath, command[2])):
@@ -173,9 +189,9 @@ class FileExplorer:
 					except PermissionError:
 						self.error(self.texts['noPermission']) 
 				else:
-					self.error(self.texts['doesNotExists']) 
+					self.error(self.texts['doesNotExist']) 
 			else:
-				self.error(self.texts['doesNotExists']) 
+				self.error(self.texts['doesNotExist']) 
 		else:
 			self.error(self.texts['pathNotSpecified']) 
 
