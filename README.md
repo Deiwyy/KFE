@@ -12,4 +12,4 @@ The syntax for these texts goes like this
 -[name of the key] 
 some text 
 you can use multiline too
-<span></span>=
+<br>=
