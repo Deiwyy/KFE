@@ -30,7 +30,7 @@ class FileExplorer:
 
 	def getTextsFromFile(self):
 		requiredTexts = ['inputText', 'noPermission', 'doesNotExist', 'error', 'fileHidden', 'pathNotSpecified']
-		textsDirectory = './texts/'
+		textsDirectory = './files/'
 		currentTxt = ''
 		currentTxtName = ''
 		readingAText = False
