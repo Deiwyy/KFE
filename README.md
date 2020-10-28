@@ -19,7 +19,7 @@ you can use multiline too
 With '-' meaning the start of a text, the string directly behind the '-' will be the name of the text, which will be a key in `texts` dictionary in the code.
 The '=' means the end of the texts.
 
-Everything after a '=' and not after a '-' will not count which means you can have anything writen in between the texts. For example you can use it to comment on your texts:
+Everything after a '=' and before a '-' will not count which means you can have anything writen in between the texts. For example you can use it to comment on your texts:
 
 ```
 use when the user does not have a permission to read or write to a file
