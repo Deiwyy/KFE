@@ -1,0 +1,31 @@
+
+-inputText
+# :back to revert to previous folder                        #
+# :delete [file] to delete a file                           #
+# :file [path] to create a new file or edit an existing one #
+# :movefile [from] [to] to move a file    				    #
+# :copyfile [from] [to]                                     #
+ >
+=
+
+-noPermission
+Seems like you don't have the permission to perform this operation on this file/directory
+=
+
+-doesNotExist
+Seems like the file/dir you are trying to perform an action on doesn't exist
+=
+
+
+-error
+Something went wrong
+=
+
+-fileHidden
+You tried to access a hidden file
+=
+
+-pathNotSpecified
+You didn't specify a path
+=
+
